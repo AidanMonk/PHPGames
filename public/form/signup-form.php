@@ -4,17 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Sign Up</title>
-    <link rel="stylesheet" href="">
-    <script type = "text/javascript" src = "../assets/js/signup-onkeyup/fname-ajax.js"></script>
-    <script type = "text/javascript" src = "../assets/js/signup-onkeyup/lname-ajax.js"></script>
-    <script type = "text/javascript" src = "../assets/js/signup-onkeyup/uname-ajax.js"></script>
-    <script type = "text/javascript" src = "../assets/js/signup-onkeyup/pcode1-ajax.js"></script>
-    <script type = "text/javascript" src ="../assets/js/signup-onkeyup/pcode2-ajax.js"></script>
-    <link rel="stylesheet" href="/">
+    <link rel="stylesheet" href="/PHPGames-main/public/assets/css/style.css">
+    <script type = "text/javascript" src = "/PHPGames-main/public/assets/js/signup-onkeyup/fname-ajax.js"></script>
+    <script type = "text/javascript" src = "/PHPGames-main/public/assets/js/signup-onkeyup/lname-ajax.js"></script>
+    <script type = "text/javascript" src = "/PHPGames-main/public/assets/js/signup-onkeyup/uname-ajax.js"></script>
+    <script type = "text/javascript" src = "/PHPGames-main/public/assets/js/signup-onkeyup/pcode1-ajax.js"></script>
+    <script type = "text/javascript" src = "/PHPGames-main/public/assets/js/signup-onkeyup/pcode2-ajax.js"></script>
+
 </head>
 <body>
 
-    <form id="signupForm" method="post" action="/Final Project-PHP/src/features/signup.php">
+    <form id="signupForm" method="post" action="/PHPGames-main/src/features/signup.php">
         <h2>Sign Up</h2>
 
         <label for="firstName">First Name:</label>
