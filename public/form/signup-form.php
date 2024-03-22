@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Sign Up</title>
-    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="">
     <script type = "text/javascript" src = "../assets/js/signup-onkeyup/fname-ajax.js"></script>
     <script type = "text/javascript" src = "../assets/js/signup-onkeyup/lname-ajax.js"></script>
     <script type = "text/javascript" src = "../assets/js/signup-onkeyup/uname-ajax.js"></script>

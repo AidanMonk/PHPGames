@@ -8,7 +8,7 @@ function validateFirstName() {
         return;
     } else {
         var xhr = new XMLHttpRequest();
-        xhr.open("POST", "/Final Project-PHP/src/features/SignupValidation-AJAX/validation-firstName.php", true); // Adjust the script path as needed
+        xhr.open("POST", "/Final Project-PHP/src/features/SignupValidation-AJAX/validation-firstName.php", true); 
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.onreadystatechange = function() {
             if (this.readyState == 4) { // Check if request is complete
