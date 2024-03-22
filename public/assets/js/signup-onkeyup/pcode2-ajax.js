@@ -10,7 +10,7 @@ function validateConfirmPassword() {
     }
     
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "/Final Project-PHP/src/features/SignupValidation-AJAX/validation-passwordConformation.php", true);
+    xhr.open("POST", "/PHPGames-main/src/features/SignupValidation-AJAX/validation-passwordConformation.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.onreadystatechange = function() {
         if (this.readyState == 4) {
