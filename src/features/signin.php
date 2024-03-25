@@ -3,7 +3,7 @@
 session_start(); // Start or resume a session
 
 //require 'FINAL PROJECT-PHP/db/baseversion'; // Adjust this path to your database connection script
-require '../../db/baseversion.php'; // Adjust this path to your database connection script
+require '/PHPGames-main/db/Database.php'; // Adjust this path to your database connection script
 
 $errorMessages = [];
 

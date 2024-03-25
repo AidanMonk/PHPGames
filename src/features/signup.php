@@ -1,6 +1,6 @@
 <?php
 // Assuming you have a database connection setup commented out for brevity
-// include 'database_connection.php';
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && $_POST['action'] == 'register') {
     // Extract form data
@@ -34,6 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && $_POST['a
         $isValid = false;
         $errorMessages[] = "Passwords do not match.";
     }
+
 
     // Example for checking if the username exists in the database
     /*

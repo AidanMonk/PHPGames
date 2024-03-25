@@ -14,7 +14,7 @@
 </head>
 <body>
 
-    <form id="signupForm" method="post" action="/PHPGames-main/src/features/signup.php">
+    <form id="signupForm" method="post" action="signup.php">
         <h2>Sign Up</h2>
 
         <label for="firstName">First Name:</label>
