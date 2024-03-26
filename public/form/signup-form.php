@@ -14,7 +14,7 @@
 </head>
 <body>
 
-    <form id="signupForm" method="post" action="signup.php">
+    <form id="signupForm" method="post" action="../../src/features/signup.php">
         <h2>Sign Up</h2>
 
         <label for="firstName">First Name:</label>

@@ -1,20 +1,23 @@
 <?php
-// Assuming you have a database connection setup commented out for brevity
 
+require_once "../../db/Database.php"; // Correct the path as needed
+require_once "../../db/Insert.php"; // Correct the path as needed
+require_once "../../config.php"; // Correct the path as needed
+
+
+session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && $_POST['action'] == 'register') {
-    // Extract form data
-    $firstName = $_POST['firstName'];
-    $lastName = $_POST['lastName'];
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    $confirmPassword = $_POST['confirmPassword'];
+    $firstName = trim($_POST['firstName']);
+    $lastName = trim($_POST['lastName']);
+    $username = trim($_POST['username']);
+    $password = trim($_POST['password']); // Assuming direct use without hashing
+    $confirmPassword = trim($_POST['confirmPassword']);
+    $registrationTime = date('Y-m-d H:i:s'); // Current timestamp
 
-    // Initialize validation flag and error messages array
     $isValid = true;
     $errorMessages = [];
 
-    // Validate input fields
     if (empty($firstName) || empty($lastName) || empty($username) || empty($password) || empty($confirmPassword)) {
         $isValid = false;
         $errorMessages[] = "All fields are required.";
@@ -35,43 +38,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && $_POST['a
         $errorMessages[] = "Passwords do not match.";
     }
 
+    $database = new Database();
+    $conn = $database->getConnection();
 
-    // Example for checking if the username exists in the database
-    /*
-    $query = "SELECT * FROM users WHERE username = ?";
-    $stmt = $conn->prepare($query);
+    if ($conn === null) {
+        die('Database connection failed');
+    }
+
+    // Check if the username already exists
+    $stmt = $conn->prepare("SELECT COUNT(*) as cnt FROM player WHERE userName = ?");
     $stmt->bind_param("s", $username);
     $stmt->execute();
-    $result = $stmt->get_result();
-    if ($result->num_rows > 0) {
+    $result = $stmt->get_result()->fetch_assoc();
+    $stmt->close();
+
+    if ($result['cnt'] > 0) {
         $isValid = false;
         $errorMessages[] = "Username already exists.";
     }
-    */
 
-    // If validation passes
     if ($isValid) {
-        // Example for inserting user into the database
-        /*
-        $insertQuery = "INSERT INTO users (firstName, lastName, username, password) VALUES (?, ?, ?, ?)";
-        $stmt = $conn->prepare($insertQuery);
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-        $stmt->bind_param("ssss", $firstName, $lastName, $username, $hashedPassword);
-        $stmt->execute();
-        */
+        // Use the Insert class to insert the data into the database
+        new Insert('insertIdentity', $firstName, $lastName, $username, $registrationTime, '', '', '', '');
 
-        // Set session message and type
+        // Assuming the Insert operation is successful
         $_SESSION['message'] = "Registration successful!";
         $_SESSION['message_type'] = 'success';
-        // Redirect to form or success page as needed
-        header('Location: signup-form.php');
-        exit();
+
+        header('Location: ../../index.php');
+        exit;
     } else {
-        // Set session message for errors
         $_SESSION['message'] = implode("<br>", $errorMessages);
         $_SESSION['message_type'] = 'error';
-        // Redirect back to the form to display the error messages
-        header('Location: signup-form.php');
-        exit();
+        header('Location: ../../public/form/signup-form.php');
+        exit;
     }
 }

@@ -30,7 +30,7 @@ class Insert extends Database {
         //1-Successful Connect to the DBMS 
         if ($this->connectToDBMS() === TRUE) {  
             //2-Successful Connect to the DB
-            if ($this->connectToDB(DBNAME) === TRUE) { 
+            if ($this->connectToDB('kidsgames') === TRUE) { 
                 //3-Successfull Table description
                 if ($this->executeOneQuery($this->sqlCode()['validateTab']) === TRUE){
                     //4-Failed Table insert
@@ -55,10 +55,12 @@ class Insert extends Database {
     private function sqlCode()
     {
         //SQL query
+        /// I modefied this $this->registrationTime); and made it like this '$this->registrationTime');
         $sqlCode['insertIdentity']=
             "INSERT INTO player(fName, lName, userName, registrationTime)
-            VALUES('$this->firstName', '$this->lastName', '$this->userName', $this->registrationTime);";
+            VALUES('$this->firstName', '$this->lastName', '$this->userName', '$this->registrationTime');";
         
+
         $sqlCode['insertCredentials']=
             "INSERT INTO authenticator(passCode,registrationOrder)
             VALUES('$this->passCode', $this->registrationOrder);";

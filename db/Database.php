@@ -7,11 +7,13 @@ class Database {
 
     //Constructor Method 
     public function __construct(){
+        $this->connectToDBMS();
+        $this->connectToDB('kidsgames');
 
     }
 
     //Method for customized Messages
-    protected function messages()
+    public function messages()
     {
         //Error messages 
         $m['conDBMS'] = "Connection to MySQL failed!";
@@ -30,7 +32,7 @@ class Database {
     }
     
     //Method for DBMS Connection 
-    protected function connectToDBMS()
+    public function connectToDBMS()
     {
         //Attempt to connect to MySQL using MySQLi
         $con = new mysqli(HOST, USER, PASS);
@@ -45,7 +47,7 @@ class Database {
     }
 
     //Method for DB Connection 
-    protected function connectToDB($dbname)
+    public function connectToDB($dbname)
     {
         //Attempt to connect to MySQL using MySQLi
         $con = mysqli_select_db($this->connection, $dbname);
@@ -59,7 +61,7 @@ class Database {
     }
 
     //Method for multiple SQL Query Execution 
-    protected function executeMultiQuery($sqlcode)
+    public function executeMultiQuery($sqlcode)
     {
         //Attempt to execute the query
         $invokeQuery = ($this->connection)->multi_query($sqlcode);
@@ -74,7 +76,7 @@ class Database {
     }   
 
     //Method for one SQL Query Execution 
-    protected function executeOneQuery($sqlcode)
+    public function executeOneQuery($sqlcode)
     {
         //Attempt to execute the query
         $invokeQuery = ($this->connection)->query($sqlcode);
@@ -88,8 +90,12 @@ class Database {
         }
     } 
 
+    public function getConnection() {
+        return $this->connection;
+    }
+
     //Method for Selected Data Recording
-    protected function saveSelectedData(){
+    public function saveSelectedData(){
         //Calculate the number of rows available
         $number_of_rows = ($this->sqlExec)->num_rows;
         if ($number_of_rows==0){
@@ -108,6 +114,10 @@ class Database {
             $this->selectedRows=$data;  
         }
     }
+
+
+
+
 
      //Destructor Method
      public function __destruct()
