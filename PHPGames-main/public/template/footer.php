@@ -1,1 +1,0 @@
-location: fotter.php
