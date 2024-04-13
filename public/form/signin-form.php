@@ -27,7 +27,7 @@ session_start()
 		<!--
 		<div class="wrapper">
 		<form action="">
-			<h1>Login</h1>
+
 			<div class="input-box">
 				<input type="text" placeholder="Username"
 				required>
@@ -51,6 +51,7 @@ session_start()
 		</div>
 		-->
 		<div class="wrapper">
+			<h1>Login</h1>
 			<div class="input-box">
 			<input type="text" id="username" name = "username" placeholder="Username"><br>
 			</div>
