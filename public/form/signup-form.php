@@ -14,23 +14,9 @@
 </head>
 <body>
 
-
-
     <form id="signupForm" method="post" action="../../src/features/signup.php">
 
-        <?php session_start(); // Start the session at the very beginning 
-
-        if (isset($_SESSION['signup-errorMessages']) && count($_SESSION['signup-errorMessages']) > 0) {
-            echo "<div class = 'ers'>";
-            foreach ($_SESSION['signup-errorMessages'] as $message) {
-            echo ($message) . '<br>';
-            }
-            echo "</div>";
-
-        // Clear the error messages from session after displaying them
-            unset($_SESSION['signup-errorMessages']);
-        }
-        ?>
+       
         <!--
         <label for="firstName">First Name:</label>
         <input type="text" id="firstName" name="firstName" onkeyup="validateFirstName()">
@@ -54,11 +40,25 @@
 
         <button type="submit" name="action" value="register">Register</button>
         <button type="button" onclick="location.href='signin-form.php';">login</button>
-    -->
+        -->
         
         <div class="wrapper">
         <form action="">
             <h1>Sign Up</h1>
+
+            <?php session_start(); // Start the session at the very beginning 
+
+            if (isset($_SESSION['signup-errorMessages']) && count($_SESSION['signup-errorMessages']) > 0) {
+                echo "<div id='signinError'>";
+            foreach ($_SESSION['signup-errorMessages'] as $message) {
+                echo ($message) . '<br>';
+            }
+                echo "</div>";
+
+            // Clear the error messages from session after displaying them
+                unset($_SESSION['signup-errorMessages']);
+            }
+            ?>
             <div class="input-box">
             <input type="text" id="firstName" name="firstName" placeholder="First Name"
             required onkeyup="validateFirstName()">
@@ -84,10 +84,12 @@
 				required onkeyup="validateConfirmPassword()">
             <div id="confirmPasswordMessage"></div>
             </div>
-            <button type="submit" class="btn" name="action" value="register">Register </button>
-            <div class="register-link">
-				<p>Already have an account? <a href="signin-form.php">Sign In</a></p>
+            <button type="submit" class="btn" name="action" value="register">Register</button>
+            
+            <div class="input-box">
+    		    <button type="button" class="btn" onclick="window.location.href='signin-form.php';">login</button>
 			</div>
+
         </form>
     </div>
     </div>

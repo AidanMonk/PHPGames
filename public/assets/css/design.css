@@ -112,3 +112,16 @@ body {
 .register-link p a:hover {
     text-decoration: underline;
 }
+
+#signinError {
+    color: red; 
+    background-color: rgb(255, 232, 232); 
+    border-color: 1px solid red; 
+    font-size: 12px;
+    font-weight: bold;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    text-align: center;
+}

@@ -1,5 +1,4 @@
 <?php
-// require_once ("src\features\history.php");
 
 // $connectDatabase = connectDatabase();
 
@@ -32,9 +31,14 @@ try {
     <title>History Table</title>
     <link rel="stylesheet" href="/PHPGames-main/public/assets/css/table.css">
 </head>
+<?php
+        require_once '../../public/template/head.php'; 
+        require_once '../../public/template/header.php';
+    ?>  
 <body>
     <div class="wrapper">
     <?php
+        
         try {
             $sqlCode = "SELECT p.id, p.username, s.result, s.scoreTime 
                         FROM player p

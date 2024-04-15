@@ -17,21 +17,36 @@ for ($i = 0; $i < 6; $i++) {
     $randomNumbers[] = rand(0, 100);
 }
 
-// Display the game form for level 4
-echo "<h1>Level 4</h1>";
-echo "<h2>Lives " . $_SESSION['lives']. "</h2>";
-echo "<p>$instruction</p>";
-echo "<p>" . implode(", ", $randomNumbers) . "</p>";
+?>
+<style>
+    body {
+        background-image: url('images/panda.jpg'); /* Update this with the actual path to your image */
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+    }
+</style>
+<?php
 
+require_once '../../public/template/head.php'; 
+require_once '../../public/template/header.php'; 
 
+echo "<title>Level 4</title>";
+echo "<div style='background: rgba(255, 255, 255, 0.8); padding: 20px; border-radius: 10px; text-align: center;'>";
+echo "<h1 style='color: #333; font-size: 2em; text-shadow: 1px 1px 2px rgba(0,0,0,0.7);'>Level 4</h1>";
+echo "<h2 style='color: #555; font-size: 1.5em; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);'>Lives " . $_SESSION['lives'] . "</h2>";
+echo "<p style='font-size: 1.2em;'>$instruction</p>";
+echo "<p style='font-size: 1.2em; font-weight: bold;'>" . implode(", ", $randomNumbers) . "</p>";
 
 // Display the form for user input
-echo "<form method='post'>";
-echo "<label for='user_input'>Your Numbers:</label>";
-echo "<input type='text' id='user_input' name='user_input'>";
-echo "<button type='submit'>Submit</button>";
+echo "<form method='post' style='margin-top: 20px;'>";
+echo "<label for='user_input' style='display: block; font-size: 1.2em;'>Your Numbers:</label>";
+echo "<input type='text' id='user_input' name='user_input' style='font-size: 1.2em; margin-bottom: 10px; width: 100%; padding: 5px;'>";
+echo "<button type='submit' style='font-size: 1.2em; padding: 10px 20px; margin-top: 5px;'>Submit</button>";
 echo "</form>";
 
+echo "</div>";
+require_once '../../public/template/footer.php'; 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check user input and process accordingly
@@ -53,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Game over, redirect to a game over page
         echo "<script>         
         alert('Game Over!! You have used all the opportunities. Please try again with a new game ');         
-        window.location.href='game.php';       
+        window.location.href='game-form.php';       
         </script>";        
         exit();
         
@@ -86,7 +101,7 @@ function validateUserInput($userInput, $randomNumbers) {
     // Check if each number in user input is less than the previous one
     $prevNumber = PHP_INT_MAX; // Initialize with maximum integer value
     foreach ($userNumbers as $number) {
-        if ($number >= $prevNumber) {
+        if ($number > $prevNumber) {
             return false; // Input is not in descending order
         }
         $prevNumber = $number;

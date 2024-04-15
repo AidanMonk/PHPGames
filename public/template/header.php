@@ -1,1 +1,3 @@
-location: header.php
+<header>
+    <?php include('nav.php'); ?> <!-- Including navigation bar -->
+</header>

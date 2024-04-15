@@ -58,11 +58,72 @@ if (isset($_SESSION['game_result'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+
+
+            background-image: url('images/cat.jpg'); /* Update this with the actual path to your image */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 90%;
+            max-width: 400px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 30px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        p {
+            color: #666;
+            font-size: 16px;
+        }
+
+        a {
+            color: #0077cc;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <h2>Welcome to the Game!</h2>
+        <p>answers to all questions to win</p>
+        <p>pay attention that you only have 3 lives</p>
+        <p>Good luck</p>
         <!-- Start button to begin the game -->
         <form method="post">
             <button type="submit" name="start_game">Start Game</button>
@@ -71,9 +132,9 @@ if (isset($_SESSION['game_result'])) {
         <?php if (!empty($message)) : ?>
             <p><?php echo $message; ?></p>
         <?php endif; ?>
+        <br><a href="../../src/features/signout.php">Sign Out</a>
     </div>
-	<!--This signout link should be inside a navigator section for now leave it as it is-->
+    <!--This signout link should be inside a navigator section for now leave it as it is-->
     <br/>
-	<a href="../../src/features/signout.php">signout</a>
 </body>
 </html>

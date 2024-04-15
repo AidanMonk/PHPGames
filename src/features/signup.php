@@ -1,8 +1,8 @@
 <?php
 
-require_once "../../db/Database.php"; // Correct the path as needed
-require_once "../../db/Insert.php"; // Correct the path as needed
-require_once "../../config.php"; // Correct the path as needed
+require_once "../../db/Database.php"; 
+require_once "../../db/Insert.php";
+require_once "../../config.php"; 
 require_once "../../db/Select.php";
 
 session_start();
@@ -11,9 +11,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && $_POST['a
     $firstName = trim($_POST['firstName']);
     $lastName = trim($_POST['lastName']);
     $username = trim($_POST['username']);
-    $password = trim($_POST['password']); // Assuming direct use without hashing
+    $password = trim($_POST['password']); 
     $confirmPassword = trim($_POST['confirmPassword']);
-    $registrationTime = date('Y-m-d H:i:s'); // Current timestamp
+    $registrationTime = date('Y-m-d H:i:s'); 
 
     $isValid = true;
     $errorMessages = [];
@@ -39,12 +39,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && $_POST['a
         $errorMessages[] = "Password must contain at least 8 characters.";
     }
 
-    /*
-    if (strlen($username) < 8 || strlen($password) < 8) {
-        $isValid = false;
-        $errorMessages[] = "Username and Password must contain at least 8 characters.";
-    }
-    */
 
     if ($password !== $confirmPassword) {
         $isValid = false;
@@ -65,12 +59,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && $_POST['a
     $database = new Database();
     $conn = $database->getConnection();
 
-   // After validating the password and before inserting it into the database
    if ($isValid) {
-    // Insert the player information using the `Insert` class
     new Insert('insertIdentity', $firstName, $lastName, $username, $registrationTime);
     
-    // Immediately fetch the `registrationOrder` for the newly inserted player
     $stmt = $conn->prepare("SELECT registrationOrder FROM player WHERE userName = ? ORDER BY registrationOrder DESC LIMIT 1");
     $stmt->bind_param("s", $username);
     $stmt->execute();
@@ -79,20 +70,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && $_POST['a
         if ($result && $row = $result->fetch_assoc()) {
             $registrationOrder = $row['registrationOrder'];
         
-            // Hash the password securely
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-            // Insert the authenticator information
             new Insert('insertCredentials', '', '', '', '', $hashedPassword, $registrationOrder);
 
-            // Assuming the Insert operation is successful
             $_SESSION['message'] = "Registration successful!";
             $_SESSION['message_type'] = 'success';
 
             header('Location: ../../index.php');
             exit;
         } else {
-            // Handle the case where the `registrationOrder` could not be retrieved
             $_SESSION['message'] = "An error occurred during registration.";
             $_SESSION['message_type'] = 'error';
             header('Location: ../../public/form/signup-form.php');
@@ -101,7 +88,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && $_POST['a
     }else{
         $_SESSION['signup-errorMessages'] = $errorMessages;
 
-        // Redirect back to the form
         header('Location: ../../public/form/signup-form.php');
         exit();
 
